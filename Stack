@@ -1,0 +1,90 @@
+package testingpack;
+
+import java.util.ArrayList;
+import java.util.List;
+
+//* return null - throws exception
+//** node ---> array
+class Stack<E> {
+
+    private List<E> list = new ArrayList<>();
+
+    E push(E object) {
+        list.add(object);
+        return object;
+    }
+
+    E pop() {
+//------ RETURNS NULL ----------
+//        if (list.size() == 0) {
+//            return null;
+//        }
+//------ THROWS RuntimeException --------
+
+        try {
+            return list.remove(list.size() - 1);
+        } catch (IndexOutOfBoundsException | UnsupportedOperationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    //*? null ----> throw new RuntimeException
+    E peek() {
+//------ RETURNS NULL ----------
+//        if (list.size() == 0) {
+//            return null;
+//        }
+//------ THROWS RuntimeException --------
+
+        try {
+            return list.get(list.size() - 1);
+        } catch (IndexOutOfBoundsException | UnsupportedOperationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    boolean isEmpty() {
+        return list.size() == 0;
+    }
+
+    @Override
+    public String toString() {
+        return list.toString();
+    }
+}
+
+class Test {
+    public static void main(String[] args) {
+        Stack<String> stack = new Stack<>();
+
+        System.out.println(stack);
+        System.out.println(stack.isEmpty());
+        System.out.println("------------push------------");
+
+        stack.push("1");
+        stack.push("2");
+        stack.push("3");
+        stack.push("4");
+        System.out.println(stack.push("5") + " returned");
+        System.out.println(stack.push("6") + " returned");
+
+        System.out.println(stack);
+        System.out.println(stack.isEmpty());
+        System.out.println("-----------pop-------------");
+
+        System.out.println(stack.pop() + " returned and removed");
+        System.out.println(stack.pop() + " returned and removed");
+
+        System.out.println(stack);
+        System.out.println("-----------peek-------------");
+
+        System.out.println(stack.peek() + " returned by peek() method");
+        System.out.println(stack.peek() + " returned by peek() method");
+
+        System.out.println(stack);
+        System.out.println("------------------------");
+
+
+    }
+}
+
